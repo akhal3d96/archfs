@@ -8,11 +8,15 @@ used as a package manager, and without systemd.
 
 You need a live cd-rom to continue.
 
-Boot into it and expand the live image:
+Boot up the system and expand the live image:
+```
 $ mount -o remount,size=8G /run/archiso/cowspace
+```
 
-Execute wifi-menu
+Execute wifi-menu and connect
+```
 $wifi-menu
+```
 
 ## 2. Create System Partition
 
