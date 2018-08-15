@@ -532,7 +532,7 @@ $ sudo pacman -S linux-headers
 $ sudo nano /bin/init
 #!/bin/sh
 
-echo Hello from my init daemon!
+echo "Hello from my init daemon!"
 exec bash
 $ sudo chmod +x /bin/init
 ```
