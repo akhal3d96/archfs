@@ -2,7 +2,7 @@
 
 Arch Linux is cool, but it uses systemd. In this tutorial, I will show
 how to install Arch Linux from scratch - a very clean setup with pacman
-used as a package manager.
+used as a package manager, and without systemd.
 
 ## 1. Download ArchLinux Live Disk
 
