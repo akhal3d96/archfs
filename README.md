@@ -545,7 +545,7 @@ $ sudo chmod +x /bin/init
 ## 9. Install bootloader
 
 If your firmware supports UEFI standard, you can simply use "efibootmgr" to add
-an entry to the kernel (vmlinuz-linux), with `initrd=initramfs-linux.img root=/dev/sda4 rw`
+an entry to your NVRAM for the kernel (vmlinuz-linux), with `initrd=initramfs-linux.img root=/dev/sda4 rw`
 as command line.
 
 ```
