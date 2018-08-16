@@ -69,17 +69,17 @@ $ pacman -Sy -r /mnt
 
 ## 5. Install pseudo systemd
 
-### makepkg dependencies
+### Makepkg dependencies
 ```
 $ pacman -Sy fakeroot binutils
 ```
 
-### go to tmp
+### Go to tmp
 ```
 $ cd /tmp
 ```
 
-### systemd
+### Pseudo systemd
 ```
 $ mkdir systemd
 $ chmod a+rw systemd
@@ -107,7 +107,7 @@ $ cp systemd*.xz libsystemd*.xz /mnt/var/lib/pacman/
 $ cd ..
 ```
 
-### libsystemd.so
+### Libsystemd.so
 
 ```
 TODO
@@ -427,34 +427,34 @@ $ sudo pacman -S moc alsaplayer alsa-tools alsa-utils alsa-firmware
 
 ## 7. Chrooting to the installed system
 
-# Chroot
+### Chroot
 ```
 $ chroot /mnt /usr/bin/bash
 ```
 
-# Connect to the internet in chroot'd env
+### Connect to the internet in chroot'd env
 ```
 $ nano /etc/resolv.conf
 nameserver 8.8.8.8
 ```
 
-# Generate locale
+### Generate locale
 ```
 $ nano /etc/locale.gen
 $ locale-gen
 ```
 
-# Time
+### Time
 $ ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime
 
-# Initialize pacman
+### Initialize pacman
 ```
 $ nano /etc/pacman.d/mirrorlist
 $ pacman-key --init
 $ pacman-key --populate archlinux
 ```
 
-# Make users
+### Make users
 ```
 $ groupadd users
 $ useradd -s /usr/bin/bash -d /home/iocoder -m iocoder
@@ -465,7 +465,7 @@ $ su iocoder
 $ cd ~
 ```
 
-# Install package-query (for yaourt)
+### Install package-query (for yaourt)
 ```
 $ wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
 $ tar -xzf package-query.tar.gz
@@ -476,7 +476,7 @@ $ cd ..
 $ rm -rf package-query*
 ```
 
-# Install yaourt
+### Install yaourt
 ```
 $ wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
 $ tar -xzf yaourt.tar.gz
@@ -487,12 +487,12 @@ $ cd ..
 $ rm -rf yaourt*
 ```
 
-# Now use yaourt to install eudev
+### Now use yaourt to install eudev
 ```
 $ yaourt eudev
 ```
 
-# Generate fstab
+### Generate fstab
 ```
 $ sudo su
 $ genfstab / > /etc/fstab
@@ -500,12 +500,12 @@ $ cat /etc/fstab
 $ exit
 ```
 
-# Procps-ng-nosystemd
+### Procps-ng-nosystemd
 ```
 $ yaourt procps-ng-nosystemd
 ```
 
-# Dbus-nosystemd:
+### Dbus-nosystemd:
 ```
 $ yaourt dbus-nosystemd
 $ sudo su
