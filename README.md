@@ -15,7 +15,7 @@ $ mount -o remount,size=8G /run/archiso/cowspace
 
 Execute wifi-menu and connect
 ```
-$wifi-menu
+$ wifi-menu
 ```
 
 ## 2. Create System Partition
