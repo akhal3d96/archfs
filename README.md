@@ -1,10 +1,10 @@
-# Archfs: (A)rch Linux (F)rom (Scratch)
+# Archfs: (A)rch Linux (F)rom (S)cratch
 
 Arch Linux is cool, but it uses systemd. In this tutorial, I will show
 how to install Arch Linux from scratch - a very clean setup with pacman
 used as a package manager, and without systemd.
 
-## 1. Download ArchLinux Live Disk
+## 1. Download Arch Linux Live Disk
 
 You need a live cd-rom to continue.
 
@@ -60,7 +60,7 @@ $ mount --bind /sys /mnt/sys
 $ mount --bind /proc /mnt/proc
 ```
 
-## 4. Installing pacman database
+## 4. Install pacman database
 
 ```
 $ mkdir -p /mnt/var/lib/pacman
@@ -113,7 +113,7 @@ $ cd ..
 TODO
 ```
 
-## 6. Installing base system
+## 6. Install the base system
 
 BTW, while you are installing these packages (below), you can pause at any time and chroot to /mnt to see 
 the fruits of your labor.
@@ -132,7 +132,7 @@ $ pacman -Sr /mnt glibc
 $ pacman -Sr /mnt gcc-libs
 ```
 
-### shell
+### Shell
 ```
 $ pacman -Sr /mnt ncurses
 $ pacman -Sr /mnt readline
@@ -203,7 +203,7 @@ $ pacman -Sr /mnt libelf
 $ pacman -Sr /mnt binutils
 ```
 
-### glib2
+### Glib2
 ```
 $ pacman -Sr /mnt libffi
 $ pacman -Sr /mnt glib2
@@ -238,7 +238,7 @@ $ pacman -Sr /mnt pam
 $ pacman -Sr /mnt shadow
 ```
 
-### more utility commands
+### More utility commands
 ```
 $ pacman -Sr /mnt util-linux
 $ pacman -Sr /mnt diffutils
@@ -247,7 +247,7 @@ $ pacman -Sr /mnt psmisc
 $ pacman -Sr /mnt sudo
 ```
 
-### sqlite
+### Sqlite
 ```
 $ pacman -Sr /mnt sqlite
 $ pacman -Sr /mnt yajl
@@ -267,7 +267,7 @@ $ pacman -Sr /mnt ca-certificates-mozilla
 $ pacman -Sr /mnt ca-certificates
 ```
 
-### internationalization
+### Internationalization
 ```
 $ pacman -Sr /mnt perl-xml-parser
 $ pacman -Sr /mnt libunistring
@@ -389,14 +389,14 @@ $ pacman -Sr /mnt libatomic_ops
 $ pacman -Sr /mnt gc
 ```
 
-### make utility
+### Make utility
 ```
 $ pacman -Sr /mnt texinfo
 $ pacman -Sr /mnt guile
 $ pacman -Sr /mnt make
 ```
 
-### python
+### Python
 ```
 $ pacman -Sr /mnt python2
 $ pacman -Sr /mnt python3
@@ -404,7 +404,7 @@ $ pacman -Sr /mnt python2-pip
 $ pacman -Sr /mnt python-pip
 ```
 
-### ruby
+### Ruby
 ```
 $ pacman -Sr /mnt libyaml
 $ pacman -Sr /mnt ruby rubygems
@@ -415,43 +415,46 @@ $ pacman -Sr /mnt ruby rubygems
 $ pacman -Sr /mnt networkmanager
 ```
 
-### git
+### Git
 ```
 $ pacman -Sr /mnt git
 ```
 
-### alsa
+### ALSA
 ```
 $ sudo pacman -S moc alsaplayer alsa-tools alsa-utils alsa-firmware
 ```
 
 ## 7. Chrooting to the installed system
 
-# chroot
+# Chroot
 ```
 $ chroot /mnt /usr/bin/bash
 ```
 
-# connect to the internet in chroot'd env.
+# Connect to the internet in chroot'd env
 ```
 $ nano /etc/resolv.conf
 nameserver 8.8.8.8
 ```
 
-# generate locale
+# Generate locale
 ```
 $ nano /etc/locale.gen
 $ locale-gen
 ```
 
-# initialize pacman
+# Time
+$ ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime
+
+# Initialize pacman
 ```
 $ nano /etc/pacman.d/mirrorlist
 $ pacman-key --init
 $ pacman-key --populate archlinux
 ```
 
-# users
+# Make users
 ```
 $ groupadd users
 $ useradd -s /usr/bin/bash -d /home/iocoder -m iocoder
@@ -462,7 +465,7 @@ $ su iocoder
 $ cd ~
 ```
 
-# install package-query (for yaourt)
+# Install package-query (for yaourt)
 ```
 $ wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
 $ tar -xzf package-query.tar.gz
@@ -473,7 +476,7 @@ $ cd ..
 $ rm -rf package-query*
 ```
 
-# install yaourt
+# Install yaourt
 ```
 $ wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
 $ tar -xzf yaourt.tar.gz
@@ -484,12 +487,12 @@ $ cd ..
 $ rm -rf yaourt*
 ```
 
-# now use yaourt to install eudev
+# Now use yaourt to install eudev
 ```
 $ yaourt eudev
 ```
 
-# generate fstab
+# Generate fstab
 ```
 $ sudo su
 $ genfstab / > /etc/fstab
@@ -497,12 +500,12 @@ $ cat /etc/fstab
 $ exit
 ```
 
-# procps-ng-nosystemd
+# Procps-ng-nosystemd
 ```
 $ yaourt procps-ng-nosystemd
 ```
 
-# dbus-nosystemd:
+# Dbus-nosystemd:
 ```
 $ yaourt dbus-nosystemd
 $ sudo su
@@ -512,22 +515,22 @@ $ groupadd network
 $ exit
 ```
 
-## 8. Installing the kernel!
+## 8. Install the kernel!
 
-### Installing mkinitcpio
+### Install mkinitcpio
 ```
 $ sudo pacman -S mkinitcpio-busybox
 $ sudo pacman -S mkinitcpio
 ```
 
-### Installing linux
+### Install linux
 ```
 $ sudo pacman -S linux-firmware
 $ sudo pacman -S linux
 $ sudo pacman -S linux-headers
 ```
 
-### Creating your own init script!
+### Create your own init script!
 ```
 $ sudo nano /bin/init
 #!/bin/sh
@@ -537,11 +540,22 @@ exec bash
 $ sudo chmod +x /bin/init
 ```
 
-## 9. Rebooting
+## 9. Install bootloader
+
+If your firmware supports UEFI standard, you can simply use "efibootmgr" to add
+an entry to the kernel (vmlinuz-linux), with 'initrd=initramfs-linux.img root=/dev/sda4 rw'
+as command line.
+
+```
+$ sudo pacman -S efibootmgr
+$ sudo efibootmgr -d /dev/sda -p 1 -c -L "Arch Linux" -l /vmlinuz-linux -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
+```
+
+## 9. Reboot ^_^
 ```
 $ exit
 $ exit
 $ reboot
 ```
 
-### 10. ENJOY YOUR SYSTEM!
+### ENJOY YOUR SYSTEM!
