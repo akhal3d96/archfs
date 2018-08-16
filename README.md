@@ -445,7 +445,9 @@ $ locale-gen
 ```
 
 ### Time
+```
 $ ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime
+```
 
 ### Initialize pacman
 ```
