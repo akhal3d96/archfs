@@ -545,15 +545,16 @@ $ sudo chmod +x /bin/init
 ## 9. Install bootloader
 
 If your firmware supports UEFI standard, you can simply use "efibootmgr" to add
-an entry to the kernel (vmlinuz-linux), with 'initrd=initramfs-linux.img root=/dev/sda4 rw'
+an entry to the kernel (vmlinuz-linux), with `initrd=initramfs-linux.img root=/dev/sda4 rw`
 as command line.
 
 ```
 $ sudo pacman -S efibootmgr
-$ sudo efibootmgr -d /dev/sda -p 1 -c -L "Arch Linux" -l /vmlinuz-linux -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
+$ sudo efibootmgr -d /dev/sda -p 1 -c -L "Arch Linux" -l /vmlinuz-linux \
+                  -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
 ```
 
-## 9. Reboot ^_^
+## 10. Reboot ^_^
 ```
 $ exit
 $ exit
