@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# This script is executed with PID=1 on system termination.
+# When init terminates, this script takes over control.
+# The script is actually executed from a tmpfs to ensure 
+# that init has released all resources 
+
+# send kill term to all processes
+echo "-> Send SIGTERM signal to all processes" > /dev/tty1
+kill -SIGTERM -1
+sleep 1
+
+echo "-> Send SIGKILL signal to all processes" > /dev/tty1
+kill -SIGKILL -1
+sleep 1
+
+# reopen console
+exec 0< /dev/tty1
+exec 1> /dev/tty1
+exec 2> /dev/null
+exec 3> /proc/sys/kernel/sysrq
+exec 4> /proc/sysrq-trigger
+
+# unmount file systems
+echo "-> Unmount filesystems "
+umount -a
+umount -a
+
+# shutdown
+echo 1  1>&3
+echo s  1>&4
+echo $1 1>&4
+
+# done
+while [ 1 -eq 1 ]; do : ; done

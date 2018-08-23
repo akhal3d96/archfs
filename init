@@ -1,0 +1,113 @@
+#!/bin/sh
+
+sys_init() {
+
+	# set environment vars
+	export PATH=/usr/bin:/usr/local/bin
+
+	# load udev
+	udevd --daemon
+	sleep 0.2
+	udevadm trigger
+	sleep 0.5
+
+	# allow startx to run with no root
+	chmod 666 /dev/fb0
+
+	# filesystem check
+	echo "+-----------------------------------------------+"
+	echo "|           WELCOME TO THE MACHINE              |"
+	echo "+-----------------------------------------------+"
+	fsck -ART -y
+
+	# mount filesystems
+	mount -a
+	mount -t tmpfs tmpfs /tmp
+	mkdir /dev/pts
+	mount -t devpts devpts /dev/pts
+	mkdir /dev/shm
+	mount -t tmpfs tmpfs /dev/shm
+
+	# set hostname
+	hostname `cat /etc/hostname`
+
+	# start dbus
+	mkdir -p /run/dbus
+	dbus-launch --config-file=/usr/share/dbus-1/system.conf > /dev/null
+	sleep 0.1
+
+	# enable firewall
+	ufw enable > /dev/null &
+
+	# start network
+	wpa_supplicant -Bu -i wlp2s0 > /dev/null
+	sleep 0.1
+	NetworkManager
+
+	# virtualbox
+	vboxreload > /dev/null &
+
+	# done
+	echo "-------------------------------------------------"
+
+	# release console
+	exec 0< /dev/null
+	exec 1> /dev/null
+	exec 2> /dev/null
+
+	# launch ttys
+	respawn agetty tty1 -J &
+        respawn agetty tty2 -J &
+        respawn agetty tty3 -J &
+        respawn agetty tty4 -J &
+        respawn agetty tty5 -J &
+        respawn agetty tty6 -J &
+
+}
+
+sys_quit() {
+
+	# restore console
+	exec 0< /dev/tty1
+	exec 1> /dev/tty1
+	exec 2> /dev/tty1
+	echo 
+	echo System shutdown signal received!
+
+	# make tmpfs
+	rm -rf /tmp/initrd
+	mkdir -p /tmp/initrd
+	mount -t tmpfs tmpfs /tmp/initrd
+
+	# extract initrd
+	gzip -dc /boot/initramfs-linux.img > /tmp/initrd.cpio
+	cd /tmp/initrd
+	cpio -id < ../initrd.cpio
+	cp /bin/lastmins  bin/lastmins
+	cp /bin/fuser     bin/fuser
+
+	# switch to initramfs
+	cd /tmp/initrd
+	mkdir old_root
+	mount -t devtmpfs devtmpfs dev
+	mount -t proc proc proc
+	pivot_root . old_root
+	exec chroot . bin/lastmins $1 < dev/tty1 > dev/tty1 2&>1
+
+	# failed? not a problem!
+	while [ 1 -eq 1 ]; do : ; done
+
+}
+
+# trap signals
+trap  'sys_quit b' USR1
+trap  'sys_quit o' USR2
+
+# initialize the system
+sys_init
+
+# wait infinitely
+while /usr/bin/true; do
+	sleep 0.5
+done
+
