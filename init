@@ -43,6 +43,9 @@ sys_init() {
         printf "Filesystem "
         uptime2
 
+        # enable kvm
+	chmod 666 /dev/kvm
+
         # launch X
         chmod 666 /dev/tty7
         su iocoder -c "sleep 1; startx -- vt7" < /dev/null &> /dev/null &
