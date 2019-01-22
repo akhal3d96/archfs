@@ -461,7 +461,7 @@ $ pacman-key --populate archlinux
 ### Make users
 ```
 $ groupadd users
-$ useradd -s /usr/bin/bash -d /home/iocoder -m iocoder
+$ useradd -s /bin/bash -d /home/iocoder -m iocoder
 $ passwd root
 $ passwd iocoder
 $ nano /etc/sudoers
