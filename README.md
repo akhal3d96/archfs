@@ -23,8 +23,8 @@ $ wifi-menu
 Use the live cd-rom to create an ext4fs partition for the new
 system:
 
-- UEFI System Partition
 - BIOS System Partition
+- UEFI System Partition
 - Linux swap partition
 - Linux system
 - ...
@@ -47,8 +47,8 @@ $ mkdir /mnt/home
 ```
 
 ```
-$ mount /dev/sda1 /mnt/boot
-$ mount /dev/sda7 /mnt/home
+$ mount /dev/sda2 /mnt/boot
+$ mount /dev/sda8 /mnt/home
 $ swapon /dev/sda3
 ```
 
@@ -58,6 +58,7 @@ $ mount --bind /run /mnt/run
 $ mount --bind /dev /mnt/dev
 $ mount --bind /sys /mnt/sys
 $ mount --bind /proc /mnt/proc
+$ mount --bind /sys/firmware/efi/efivars /mnt/sys/firmware/efi/efivars
 ```
 
 ## 4. Install pacman database
@@ -509,7 +510,7 @@ $ yaourt procps-ng-nosystemd
 
 ### Dbus-nosystemd:
 ```
-$ yaourt dbus-nosystemd
+$ yaourt dbus-nosystemd # edit PKGBUILD to remove git commit
 $ sudo su
 $ dbus-uuidgen > /etc/machine-id
 $ useradd avahi
@@ -549,7 +550,7 @@ an entry to your NVRAM for the kernel (vmlinuz-linux), with `initrd=initramfs-li
 as command line.
 
 ```
-$ sudo pacman -S efibootmgr
+$ sudo pacman -S efivar efibootmgr
 $ sudo efibootmgr -d /dev/sda -p 1 -c -L "Arch Linux" -l /vmlinuz-linux \
                   -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
 ```
