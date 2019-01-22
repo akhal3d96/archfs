@@ -87,8 +87,8 @@ $ chmod a+rw systemd
 $ cd systemd
 $ nano PKGBUILD
 pkgname=('systemd' 'libsystemd' 'systemd-resolvconf' 'systemd-sysvcompat')
-pkgver=239.0
-pkgrel=2
+pkgver=500.0
+pkgrel=1
 arch=('any')
 package_systemd() {
     echo;
@@ -103,8 +103,8 @@ package_systemd-sysvcompat() {
     echo;
 }
 $ su -s /bin/bash nobody makepkg
-$ pacman -Ur /mnt systemd*.xz libsystemd*.xz
-$ cp systemd*.xz libsystemd*.xz /mnt/var/lib/pacman/
+$ pacman -Ur /mnt *.xz
+$ cp *.xz /mnt/var/lib/pacman/
 $ cd ..
 ```
 
