@@ -551,7 +551,7 @@ as command line.
 
 ```
 $ sudo pacman -S efivar efibootmgr
-$ sudo efibootmgr -d /dev/sda -p 1 -c -L "Arch Linux" -l /vmlinuz-linux \
+$ sudo efibootmgr -d /dev/sda -p 2 -c -L "Arch Linux" -l /vmlinuz-linux \
                   -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
 ```
 
