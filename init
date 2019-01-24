@@ -2,23 +2,34 @@
 
 sys_init() {
 
+        # time cosumed by initramfs
+        printf "Initramfs "
+        uptime2
+
 	# set environment vars
 	export PATH=/usr/bin:/usr/local/bin
 
 	# load udev
 	udevd --daemon
-	sleep 0.2
 	udevadm trigger
-	sleep 0.5
 
 	# allow startx to run with no root
 	chmod 666 /dev/fb0
+ 
+        # enable pppd
+        mknod /dev/ppp c 108 0
 
-	# filesystem check
+        # udevd time
+        printf "Udevd "
+        uptime2
+
+	# splash
 	echo "+-----------------------------------------------+"
 	echo "|           WELCOME TO THE MACHINE              |"
 	echo "+-----------------------------------------------+"
-	fsck -ART -y
+	
+        # filesystem check
+        fsck -ART -y
 
 	# mount filesystems
 	mount -a
@@ -28,24 +39,34 @@ sys_init() {
 	mkdir /dev/shm
 	mount -t tmpfs tmpfs /dev/shm
 
+        # fs
+        printf "Filesystem "
+        uptime2
+
+        # launch X
+        chmod 666 /dev/tty7
+        su iocoder -c "sleep 1; startx -- vt7" < /dev/null &> /dev/null &
+
 	# set hostname
 	hostname `cat /etc/hostname`
 
 	# start dbus
 	mkdir -p /run/dbus
 	dbus-launch --config-file=/usr/share/dbus-1/system.conf > /dev/null
-	sleep 0.1
 
 	# enable firewall
 	ufw enable > /dev/null &
 
 	# start network
 	wpa_supplicant -Bu -i wlp2s0 > /dev/null
-	sleep 0.1
 	NetworkManager
 
 	# virtualbox
 	vboxreload > /dev/null &
+
+        # total uptime
+        printf "Total "
+        uptime2
 
 	# done
 	echo "-------------------------------------------------"
