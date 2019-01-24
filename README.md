@@ -111,7 +111,8 @@ $ cd ..
 ### Libsystemd.so
 
 ```
-TODO
+$ mkdir -p /mnt/usr/lib
+$ cp /usr/lib/libsystemd.so* /mnt/usr/lib
 ```
 
 ## 6. Install the base system
