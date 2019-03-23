@@ -86,11 +86,14 @@ $ mkdir systemd
 $ chmod a+rw systemd
 $ cd systemd
 $ nano PKGBUILD
-pkgname=('systemd' 'libsystemd' 'systemd-resolvconf' 'systemd-sysvcompat')
+pkgname=('systemd' 'systemd-libs' 'libsystemd' 'systemd-resolvconf' 'systemd-sysvcompat')
 pkgver=500.0
 pkgrel=1
 arch=('any')
 package_systemd() {
+    echo;
+}
+package_systemd-libs() {
     echo;
 }
 package_libsystemd() {
