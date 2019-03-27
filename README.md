@@ -503,7 +503,7 @@ $ groupadd users
 $ useradd -s /bin/bash -d /home/iocoder -m iocoder
 $ passwd root
 $ passwd iocoder
-$ nano /etc/sudoers
+$ vim /etc/sudoers
 ```
 
 ### Add system users
