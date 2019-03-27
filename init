@@ -73,6 +73,12 @@ sys_init() {
         # cups
 	avahi-daemon &> /dev/null &
 	cupsd &> /dev/null &
+	
+	# sshd
+	/usr/bin/sshd &> /dev/null &
+	
+	# lighttpd
+	lighttpd -f /etc/lighttpd/lighttpd.conf &> /dev/null &
 
         # total uptime
         printf "Total "
