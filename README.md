@@ -119,7 +119,7 @@ $ cd /mnt/usr/lib
 $ cp /usr/lib/libsystemd.so.0.*.0 .
 $ ln -sv libsystemd.so.0.*.0 libsystemd.so.0
 $ ln -sv libsystemd.so.0 libsystemd.so
-$ cd /tmp
+$ cd ~
 ```
 
 ## 6. Install the base system
