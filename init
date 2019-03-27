@@ -8,6 +8,9 @@ sys_init() {
 
 	# set environment vars
 	export PATH=/usr/bin:/usr/local/bin
+	
+	# disable dmesg console logging
+	dmesg -n 1
 
 	# load udev
 	udevd --daemon
@@ -44,7 +47,7 @@ sys_init() {
         uptime2
 
         # enable kvm
-	chmod 666 /dev/kvm
+	(sleep 1; chmod 666 /dev/kvm) &> /dev/null &
 
         # launch X
         chmod 666 /dev/tty7
