@@ -1,4 +1,4 @@
-# Archfs: (A)rch Linux (F)rom (S)cratch
+# ArchFS: (Arch) Linux (F)rom (S)cratch
 
 Arch Linux is cool, but it uses systemd. In this tutorial, I will show
 how to install Arch Linux from scratch - a very clean setup with pacman
