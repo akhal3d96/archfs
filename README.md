@@ -271,7 +271,6 @@ $ pacman -Sr /mnt p11-kit
 ### Certificates
 ```
 $ pacman -Sr /mnt ca-certificates-utils
-$ pacman -Sr /mnt ca-certificates-cacert
 $ pacman -Sr /mnt ca-certificates-mozilla
 $ pacman -Sr /mnt ca-certificates
 ```
@@ -281,6 +280,9 @@ $ pacman -Sr /mnt ca-certificates
 $ pacman -Sr /mnt perl-xml-parser
 $ pacman -Sr /mnt libunistring
 $ pacman -Sr /mnt intltool
+$ pacman -Sr /mnt icu
+$ pacman -Sr /mnt libxml2
+$ pacman -Sr /mnt libcroco
 $ pacman -Sr /mnt gettext
 ```
 
@@ -338,6 +340,7 @@ $ pacman -Sr /mnt vim
 
 ### Message passing
 ```
+$ pacman -Sr /mnt audit
 $ pacman -Sr /mnt dbus
 ```
 
@@ -361,12 +364,18 @@ $ pacman -Sr /mnt libnl
 $ pacman -Sr /mnt libpcap
 ```
 
-### Network
+### Routing
 ```
 $ pacman -Sr /mnt libmnl
 $ pacman -Sr /mnt libnftnl
+$ pacman -Sr /mnt libnfnetlink
+$ pacman -Sr /mnt libnetfilter_conntrack
 $ pacman -Sr /mnt iptables
 $ pacman -Sr /mnt iproute2
+```
+
+### Network tools
+```
 $ pacman -Sr /mnt iputils
 $ pacman -Sr /mnt inetutils
 $ pacman -Sr /mnt net-tools
@@ -376,6 +385,7 @@ $ pacman -Sr /mnt wpa_supplicant
 ### Internet
 ```
 $ pacman -Sr /mnt dhclient
+$ pacman -Sr /mnt pcre2
 $ pacman -Sr /mnt wget
 $ pacman -Sr /mnt lynx
 ```
@@ -431,7 +441,7 @@ $ pacman -Sr /mnt git
 
 ### ALSA
 ```
-$ sudo pacman -S moc alsaplayer alsa-tools alsa-utils alsa-firmware
+$ pacman -Sr /mnt moc alsaplayer alsa-tools alsa-utils alsa-firmware
 ```
 
 ## 7. Chrooting to the installed system
