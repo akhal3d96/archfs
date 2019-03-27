@@ -253,6 +253,7 @@ $ pacman -Sr /mnt shadow
 ```
 $ pacman -Sr /mnt util-linux
 $ pacman -Sr /mnt diffutils
+$ pacman -Sr /mnt patch
 $ pacman -Sr /mnt procps
 $ pacman -Sr /mnt psmisc
 $ pacman -Sr /mnt sudo
@@ -535,6 +536,14 @@ $ dbus-uuidgen > /etc/machine-id
 $ useradd avahi
 $ groupadd network
 $ exit
+```
+
+## cups-nosystemd:
+```
+$ sudo groupadd lp
+$ yaourt cups-nosystemd
+$ sudo nano /etc/nsswitch.conf
+hosts: ... mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns ...
 ```
 
 ## 8. Install the kernel!

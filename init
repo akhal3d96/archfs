@@ -67,6 +67,10 @@ sys_init() {
 	# virtualbox
 	vboxreload > /dev/null &
 
+        # cups
+	avahi-daemon &> /dev/null &
+	cupsd &> /dev/null &
+
         # total uptime
         printf "Total "
         uptime2
