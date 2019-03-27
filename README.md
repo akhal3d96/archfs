@@ -526,15 +526,6 @@ $ vim /etc/pacman.d/mirrorlist
 $ pacman-key --init
 $ pacman-key --populate archlinux
 ```
-### Add system users
-```
-$ useradd avahi
-$ useradd polkitd
-$ useradd colord
-$ useradd nobody
-$ useradd http
-```
-
 ### Add system groups
 ```
 $ groupadd users
@@ -550,6 +541,15 @@ $ groupadd optical
 $ groupadd network
 $ groupadd rfkill
 $ groupadd lp
+```
+
+### Add system users
+```
+$ useradd avahi
+$ useradd polkitd
+$ useradd colord
+$ useradd nobody
+$ useradd http
 ```
 
 ### Create login user
