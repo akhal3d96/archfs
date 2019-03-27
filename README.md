@@ -85,7 +85,7 @@ $ cd /tmp
 $ mkdir systemd
 $ chmod a+rw systemd
 $ cd systemd
-$ nano PKGBUILD
+$ vim PKGBUILD
 pkgname=('systemd' 'systemd-libs' 'libsystemd' 'systemd-resolvconf' 'systemd-sysvcompat')
 pkgver=500.0
 pkgrel=1
