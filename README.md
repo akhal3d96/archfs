@@ -436,6 +436,17 @@ $ pacman -Sr /mnt ruby rubygems
 $ pacman -Sr /mnt networkmanager
 ```
 
+### Firewall
+```
+$ pacman -Sr /mnt ufw
+```
+
+### Virtualization
+```
+$ pacman -Sr /mnt virtualbox
+$ pacman -Sr /mnt qemu
+```
+
 ### Git
 ```
 $ pacman -Sr /mnt git
@@ -470,6 +481,11 @@ $ locale-gen
 $ ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime
 ```
 
+### Host name
+```
+$ echo archfs > /etc/hostname
+```
+
 ### Initialize pacman
 ```
 $ nano /etc/pacman.d/mirrorlist
@@ -484,6 +500,36 @@ $ useradd -s /bin/bash -d /home/iocoder -m iocoder
 $ passwd root
 $ passwd iocoder
 $ nano /etc/sudoers
+```
+
+### Add system users
+```
+$ useradd avahi
+$ useradd polkitd
+$ groupadd tty
+$ groupadd uucp
+$ groupadd kmem
+$ groupadd input
+$ groupadd audio
+$ groupadd video
+$ groupadd storage
+$ groupadd disk
+$ groupadd optical
+$ groupadd network
+$ groupadd rfkill
+$ groupadd lp
+$ usermod -a -G tty iocoder
+$ usermod -a -G input iocoder
+$ usermod -a -G audio iocoder
+$ usermod -a -G video iocoder
+$ usermod -a -G disk iocoder
+$ usermod -a -G optical iocoder
+$ usermod -a -G network iocoder
+$ usermod -a -G lp iocoder
+```
+
+### Switch to the new user
+```
 $ su iocoder
 $ cd ~
 ```
@@ -533,14 +579,11 @@ $ yaourt procps-ng-nosystemd
 $ yaourt dbus-nosystemd # edit PKGBUILD to remove git commit
 $ sudo su
 $ dbus-uuidgen > /etc/machine-id
-$ useradd avahi
-$ groupadd network
 $ exit
 ```
 
 ## cups-nosystemd:
 ```
-$ sudo groupadd lp
 $ yaourt cups-nosystemd
 $ sudo nano /etc/nsswitch.conf
 hosts: ... mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns ...
