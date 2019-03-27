@@ -40,6 +40,7 @@ $ git clone https://github.com/iocoder/archfs
 
 Open the README file in your terminal
 ```
+$ cd archfs
 $ vim README.md
 ```
 
