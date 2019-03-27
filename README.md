@@ -496,21 +496,17 @@ $ vim /etc/pacman.d/mirrorlist
 $ pacman-key --init
 $ pacman-key --populate archlinux
 ```
-
-### Make users
-```
-$ groupadd users
-$ useradd -s /bin/bash -d /home/iocoder -m iocoder
-$ passwd root
-$ passwd iocoder
-$ chmod +w /etc/sudoers
-$ vim /etc/sudoers
-```
-
 ### Add system users
 ```
 $ useradd avahi
 $ useradd polkitd
+$ useradd colord
+$ useradd nobody
+```
+
+### Add system groups
+```
+$ groupadd users
 $ groupadd tty
 $ groupadd uucp
 $ groupadd kmem
@@ -523,6 +519,19 @@ $ groupadd optical
 $ groupadd network
 $ groupadd rfkill
 $ groupadd lp
+```
+
+### Create login user
+```
+$ useradd -s /bin/bash -d /home/iocoder -m iocoder
+$ passwd root
+$ passwd iocoder
+$ chmod +w /etc/sudoers
+$ vim /etc/sudoers
+```
+
+### Add login user to system groups
+```
 $ usermod -a -G tty iocoder
 $ usermod -a -G input iocoder
 $ usermod -a -G audio iocoder
