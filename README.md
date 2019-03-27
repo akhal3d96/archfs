@@ -684,14 +684,23 @@ $ cd ..
 
 ## 9. Install the bootloader
 
-If your firmware supports UEFI standard, you can simply use "efibootmgr" to add
-an entry to your NVRAM for the kernel (vmlinuz-linux), with `initrd=initramfs-linux.img root=/dev/sda4 rw`
-as command line.
+If your firmware supports UEFI standard, you can simply use "efibootmgr"
+to add an entry to your NVRAM for the kernel (vmlinuz-linux), with 
+`initrd=initramfs-linux.img root=/dev/sda4 rw` as command line.
 
 ```
 $ sudo pacman -S efivar efibootmgr
 $ sudo efibootmgr -d /dev/sda -p 2 -c -L "Arch Linux" -l /vmlinuz-linux \
                   -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
+```
+
+If you are using virtualbox, you need to use startup.nsh because
+the nvram of virtualbox is non-persistent:
+
+```
+$ sudo su
+$ echo 'vmlinuz-linux root=/dev/sda4 rw initrd=\initramfs-linux.img' > /boot/startup.nsh
+$ exit
 ```
 
 ## 10. Virtualization
