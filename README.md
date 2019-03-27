@@ -578,6 +578,8 @@ $ usermod -a -G lp iocoder
 ```
 $ su iocoder
 $ cd ~
+$ sudo su
+$ exit
 ```
 
 ### Install package-query (for yaourt)
