@@ -192,14 +192,15 @@ $ pacman -Sr /mnt pcre2
 $ pacman -Sr /mnt less
 $ pacman -Sr /mnt gzip
 $ pacman -Sr /mnt zip
-$ pacman -Sr /mnt cpio
 ```
 
 ## Archiving
 ```
 $ pacman -Sr /mnt expat
 $ pacman -Sr /mnt tar
+$ pacman -Sr /mnt zstd
 $ pacman -Sr /mnt libarchive
+$ pacman -Sr /mnt cpio
 ```
 
 ### Coreutils
@@ -385,11 +386,20 @@ $ pacman -Sr /mnt net-tools
 $ pacman -Sr /mnt wpa_supplicant
 ```
 
+### ssh
+```
+$ pacman -Sr /mnt dnssec-anchors
+$ pacman -Sr /mnt ldns
+$ pacman -Sr /mnt libedit
+$ pacman -Sr /mnt openssh
+```
+
 ### Internet
 ```
 $ pacman -Sr /mnt dhclient
 $ pacman -Sr /mnt wget
 $ pacman -Sr /mnt lynx
+$ pacman -Sr /mnt lighttpd
 ```
 
 ### GNU Package Conf tools
