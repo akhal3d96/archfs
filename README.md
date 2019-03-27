@@ -188,9 +188,11 @@ $ pacman -Sr /mnt bzip2
 $ pacman -Sr /mnt lz4
 $ pacman -Sr /mnt xz
 $ pacman -Sr /mnt pcre
+$ pacman -Sr /mnt pcre2
 $ pacman -Sr /mnt less
 $ pacman -Sr /mnt gzip
 $ pacman -Sr /mnt zip
+$ pacman -Sr /mnt cpio
 ```
 
 ## Archiving
@@ -385,7 +387,6 @@ $ pacman -Sr /mnt wpa_supplicant
 ### Internet
 ```
 $ pacman -Sr /mnt dhclient
-$ pacman -Sr /mnt pcre2
 $ pacman -Sr /mnt wget
 $ pacman -Sr /mnt lynx
 ```
