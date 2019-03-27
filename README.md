@@ -532,6 +532,7 @@ $ vim /etc/sudoers
 
 ### Add login user to system groups
 ```
+$ usermod -a -G users iocoder
 $ usermod -a -G tty iocoder
 $ usermod -a -G input iocoder
 $ usermod -a -G audio iocoder
