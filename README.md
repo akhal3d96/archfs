@@ -470,13 +470,13 @@ $ chroot /mnt /usr/bin/bash
 
 ### Connect to the internet in chroot'd env
 ```
-$ nano /etc/resolv.conf
+$ vim /etc/resolv.conf
 nameserver 8.8.8.8
 ```
 
 ### Generate locale
 ```
-$ nano /etc/locale.gen
+$ vim /etc/locale.gen
 $ locale-gen
 ```
 
@@ -492,7 +492,7 @@ $ echo archfs > /etc/hostname
 
 ### Initialize pacman
 ```
-$ nano /etc/pacman.d/mirrorlist
+$ vim /etc/pacman.d/mirrorlist
 $ pacman-key --init
 $ pacman-key --populate archlinux
 ```
@@ -589,8 +589,10 @@ $ exit
 ## cups-nosystemd:
 ```
 $ yaourt cups-nosystemd
-$ sudo nano /etc/nsswitch.conf
+$ sudo su
+$ vim /etc/nsswitch.conf
 hosts: ... mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns ...
+$ exit
 ```
 
 ## 8. Install the kernel!
