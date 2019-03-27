@@ -13,10 +13,44 @@ Boot up the system and expand the live image:
 $ mount -o remount,size=8G /run/archiso/cowspace
 ```
 
-Execute wifi-menu and connect
+Execute wifi-menu to connect to wifi
 ```
 $ wifi-menu
 ```
+
+Now you need to choose a mirror for the live pacman
+```
+$ vim /etc/pacman.d/mirrorlist
+```
+
+Next, update the live system's repository database
+```
+$ pacman -Sy
+```
+
+Now you need to install packages that we will need later on for the live system:
+```
+$ pacman -S git fakeroot binutils
+```
+
+Finally, make a clone of our archfs repo:
+```
+$ git clone https://github.com/iocoder/archfs
+```
+
+Open the README file in your terminal
+```
+$ vim README.md
+```
+
+You can use ALT+F1 and ALT+F2 to switch between vtty1 and vtty2 so that
+you can follow the instructions and at the same time you execute them
+on vtty2's console.
+
+Press ALT+F2 to switch to vtty2. Type `root` and press Enter in order
+to login. Now press ALT+F1 again to return to vtty1. Now you can continue 
+reading section 2 from your live system's vtty1, and executing
+the commands by switching to vtty2.
 
 ## 2. Create System Partition
 
@@ -29,6 +63,9 @@ system:
 - Linux system
 - ...
 - Linux /home partion
+
+You can use `gdisk` command if your disk is not partitioned yet. You also need
+to install filesystem to any unformatted partitions.
 
 ## 3. Mount the target system
 
@@ -69,16 +106,6 @@ $ pacman -Sy -r /mnt
 ```
 
 ## 5. Install pseudo systemd
-
-### Makepkg dependencies
-```
-$ pacman -Sy fakeroot binutils
-```
-
-### Go to tmp
-```
-$ cd /tmp
-```
 
 ### Pseudo systemd
 ```
@@ -642,17 +669,20 @@ $ sudo pacman -S linux
 $ sudo pacman -S linux-headers
 ```
 
-### Create your own init script!
+### Install the init script (or create your own if you like)
 ```
-$ sudo nano /bin/init
-#!/bin/sh
-
-echo "Hello from my init daemon!"
-exec bash
-$ sudo chmod +x /bin/init
+$ git clone https://github.com/iocoder/archfs
+$ cd archfs
+$ sudo cp init /usr/bin
+$ sudo cp lastmins /usr/bin
+$ sudo cp reboot /usr/bin
+$ sudo cp respawn /usr/bin
+$ sudo cp shutdown /usr/bin
+$ sudo cp uptime2 /usr/bin
+$ cd ..
 ```
 
-## 9. Install bootloader
+## 9. Install the bootloader
 
 If your firmware supports UEFI standard, you can simply use "efibootmgr" to add
 an entry to your NVRAM for the kernel (vmlinuz-linux), with `initrd=initramfs-linux.img root=/dev/sda4 rw`
