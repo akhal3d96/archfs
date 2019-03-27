@@ -28,7 +28,8 @@ Next, update the live system's repository database
 $ pacman -Sy
 ```
 
-Now you need to install packages that we will need later on for the live system:
+Now you need to install packages that we will need later on for the 
+live system:
 ```
 $ pacman -S git fakeroot binutils
 ```
@@ -153,8 +154,8 @@ $ cd ~
 
 ## 6. Install the base system
 
-BTW, while you are installing these packages (below), you can pause at any time and chroot to /mnt to see 
-the fruits of your labor.
+BTW, while you are installing these packages (below), you can pause at
+any time and chroot to /mnt to see the fruits of your labor.
 
 ### Filesystem tree
 ```
