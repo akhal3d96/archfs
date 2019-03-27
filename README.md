@@ -502,6 +502,7 @@ $ useradd avahi
 $ useradd polkitd
 $ useradd colord
 $ useradd nobody
+$ useradd http
 ```
 
 ### Add system groups
@@ -603,6 +604,26 @@ $ yaourt cups-nosystemd
 $ sudo su
 $ vim /etc/nsswitch.conf
 hosts: ... mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns ...
+$ exit
+```
+
+## Configure ssh:
+```
+$ sudo su
+$ ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+$ ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
+$ ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
+$ chmod 0600 /etc/ssh/ssh_host_rsa_key
+$ chmod 0600 /etc/ssh/ssh_host_ecdsa_key
+$ chmod 0600 /etc/ssh/ssh_host_ed25519_key
+$ exit
+```
+
+## Configure http
+```
+$ sudo su
+$ chown http /var/log/lighttpd
+$ chown http /srv/http
 $ exit
 ```
 
