@@ -109,6 +109,7 @@ $ pacman -Sy -r /mnt
 
 ### Pseudo systemd
 ```
+$ cd /tmp
 $ mkdir systemd
 $ chmod a+rw systemd
 $ cd systemd
@@ -135,7 +136,7 @@ package_systemd-sysvcompat() {
 $ su -s /bin/bash nobody makepkg
 $ pacman -Ur /mnt *.xz
 $ cp *.xz /mnt/var/lib/pacman/
-$ cd ..
+$ cd ~
 ```
 
 ### Libsystemd.so
