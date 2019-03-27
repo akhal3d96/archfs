@@ -451,12 +451,6 @@ $ pacman -Sr /mnt networkmanager
 $ pacman -Sr /mnt ufw
 ```
 
-### Virtualization
-```
-$ pacman -Sr /mnt virtualbox
-$ pacman -Sr /mnt qemu
-```
-
 ### Git
 ```
 $ pacman -Sr /mnt git
@@ -636,7 +630,13 @@ $ sudo efibootmgr -d /dev/sda -p 2 -c -L "Arch Linux" -l /vmlinuz-linux \
                   -u 'root=/dev/sda4 rw initrd=\initramfs-linux.img'
 ```
 
-## 10. Reboot ^_^
+## 10. Virtualization
+```
+$ sudo pacman -S virtualbox
+$ sudo pacman -S qemu
+```
+
+## 11. Reboot ^_^
 ```
 $ exit
 $ exit
