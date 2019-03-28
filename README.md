@@ -31,17 +31,17 @@ $ pacman -Sy
 Now you need to install packages that we will need later on for the 
 live system:
 ```
-$ pacman -S git fakeroot binutils
+$ pacman -S fakeroot binutils
 ```
 
-Finally, make a clone of our archfs repo:
+Download archfs repo:
 ```
-$ git clone https://github.com/iocoder/archfs
+$ curl -Lo https://github.com/iocoder/archfs/archive/master.zip archfs.zip
 ```
 
-Open the README file in your terminal
+Extract the zip archive and open the README file in your terminal
 ```
-$ cd archfs
+$ cd archfs-master
 $ vim README.md
 ```
 
